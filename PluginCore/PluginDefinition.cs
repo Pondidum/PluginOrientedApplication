@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace PluginCore
@@ -11,9 +12,6 @@ namespace PluginCore
 		public Func<Plugin> Run { get; protected set; }
 		public Assembly Provider { get; internal set; }
 
-		protected void Requires(params string[] pluginNames)
-		{
-			
-		}
+		public IEnumerable<string> Requires { get; protected set; }
 	}
 }

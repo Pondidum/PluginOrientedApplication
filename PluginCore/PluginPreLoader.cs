@@ -1,32 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 
 namespace PluginCore
 {
-	public class PluginLocator
+	internal class PluginPreLoader
 	{
-		public IEnumerable<PluginDefinition> Plugins { get { return _plugins; }}
-
-		private readonly List<PluginDefinition> _plugins;
-		private readonly string _directoryPath;
-
-		public PluginLocator(string directoryPath)
+		public IEnumerable<PluginDefinition> BuildDefinitions(IEnumerable<string> assemblies)
 		{
-			_directoryPath = directoryPath;
-			_plugins = new List<PluginDefinition>();
-		}
-
-		public void Scan()
-		{
-			var files = Directory.EnumerateFiles(_directoryPath, "*Plugin.dll");
-
 			var definitionType = typeof (PluginDefinition);
 
-			var definitions = files
-				.Select(Assembly.LoadFile)
+			return assemblies
+				.Select(path => Assembly.LoadFrom(path))
 				.SelectMany(assembly =>
 				{
 					var instances = assembly
@@ -41,10 +27,8 @@ namespace PluginCore
 					instances.ForEach(definition => definition.Provider = assembly);
 
 					return instances;
-				});
-
-			_plugins.Clear();
-			_plugins.AddRange(definitions);
+				})
+				.ToList();
 		}
 	}
 }
