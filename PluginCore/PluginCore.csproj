@@ -42,6 +42,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Internal\DependencyGraph.cs" />
     <Compile Include="Internal\DirectedGraph\Cycle.cs" />
     <Compile Include="Internal\DirectedGraph\DirectedGraph.cs" />
     <Compile Include="Internal\DirectedGraph\Edge.cs" />
