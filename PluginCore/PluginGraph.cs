@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using PluginCore.Bus;
 using PluginCore.Internal;
 using PluginCore.Messages;
 

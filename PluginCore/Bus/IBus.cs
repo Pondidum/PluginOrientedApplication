@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PluginCore
+namespace PluginCore.Bus
 {
 	public interface IBus
 	{
