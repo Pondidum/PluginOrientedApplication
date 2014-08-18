@@ -9,7 +9,7 @@ namespace DeveloperToolsPlugin
 			Name = "Developer Tools";
 			Description = "Developer utilities to inspect the running application";
 
-			Requires("MenuBuilder", "PermissionAuthority");
+			Requires = new[] { "MenuBuilder", "PermissionAuthority" };
 			Run = () => new Plugin();
 		}
 	}
