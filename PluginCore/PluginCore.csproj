@@ -42,14 +42,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IBus.cs" />
     <Compile Include="Internal\DependencyGraph.cs" />
     <Compile Include="Internal\DirectedGraph\Cycle.cs" />
     <Compile Include="Internal\DirectedGraph\DirectedGraph.cs" />
     <Compile Include="Internal\DirectedGraph\Edge.cs" />
     <Compile Include="Internal\DirectedGraph\Node.cs" />
+    <Compile Include="Messages\PluginErrorMessage.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="PluginDefinition.cs" />
     <Compile Include="PluginLocator.cs" />
+    <Compile Include="PluginGraph.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
