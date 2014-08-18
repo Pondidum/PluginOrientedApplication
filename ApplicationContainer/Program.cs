@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using PluginCore;
+using PluginCore.Internal.Bus;
+using PluginCore.Messages;
 
 namespace ApplicationContainer
 {
@@ -16,7 +16,20 @@ namespace ApplicationContainer
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Form1());
+			//Application.Run(new Form1());
+
+			var bus = new InMemoryBus();
+			bus.Subscribe<PluginErrorMessage>(m => Console.WriteLine(m.Message));
+
+			var plugins = new PluginLoader(bus);
+			plugins.Add(@"plugins\DeveloperToolsPlugin.dll");
+
+			plugins.Load();
+
+			Console.WriteLine("Done.");
+			Console.ReadKey();
 		}
 	}
+
+
 }
