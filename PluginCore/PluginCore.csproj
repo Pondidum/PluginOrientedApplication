@@ -42,6 +42,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Internal\DirectedGraph\Cycle.cs" />
+    <Compile Include="Internal\DirectedGraph\DirectedGraph.cs" />
+    <Compile Include="Internal\DirectedGraph\Edge.cs" />
+    <Compile Include="Internal\DirectedGraph\Node.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="PluginDefinition.cs" />
     <Compile Include="PluginLocator.cs" />
