@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{F8F5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeveloperToolsPlugin", "DeveloperToolsPlugin\DeveloperToolsPlugin.csproj", "{964EFF46-ACF0-49A5-B69E-7F7B748FED28}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginCore.Tests", "PluginCore.Tests\PluginCore.Tests.csproj", "{90489202-98C0-431A-95E8-196194A9C0E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{964EFF46-ACF0-49A5-B69E-7F7B748FED28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{964EFF46-ACF0-49A5-B69E-7F7B748FED28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{964EFF46-ACF0-49A5-B69E-7F7B748FED28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90489202-98C0-431A-95E8-196194A9C0E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90489202-98C0-431A-95E8-196194A9C0E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90489202-98C0-431A-95E8-196194A9C0E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90489202-98C0-431A-95E8-196194A9C0E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
