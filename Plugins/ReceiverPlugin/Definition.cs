@@ -7,8 +7,8 @@ namespace ReceiverPlugin
 	{
 		public Definition()
 		{
-			Name = "Message Broadcasting Plugin";
-			Description = "Broadcasts a message every 10s.";
+			Name = "Message Receiving Plugin";
+			Description = "Receives and prints TestMessages.";
 
 			Requires = Enumerable.Empty<string>();
 			Run = () => new ReceivingPlugin();
