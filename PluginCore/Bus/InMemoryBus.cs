@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using PluginCore;
 using PluginCore.Bus;
 
@@ -17,12 +18,12 @@ namespace PluginCore.Internal.Bus
 		public void Publish<T>(T message)
 		{
 			var type = typeof(T);
-			var handlers = _handlers.GetOrDefault(type);
+			var handlers = _handlers.GetOrDefault(type, Enumerable.Empty<Handler>().ToList());
 
-			if (handlers == null)
-			{
-				return;
-			}
+			Console.WriteLine(
+				"Bus: Publishing {0} to {1} handlers.",
+				type.FullName,
+				handlers.Count);
 
 			foreach (var entry in handlers)
 			{
