@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using NLog;
 using PluginCore.Internal;
 
 namespace PluginCore.Bus
 {
 	public class InMemoryBus : IBus
 	{
+		private static readonly Logger Logger = LogManager.GetLogger("InMemoryBus");
+
 		private readonly IDictionary<Type, List<Handler>> _handlers;
 
 		public InMemoryBus()
@@ -19,8 +22,7 @@ namespace PluginCore.Bus
 			var type = typeof(T);
 			var handlers = _handlers.GetOrDefault(type, Enumerable.Empty<Handler>().ToList());
 
-			Console.WriteLine(
-				"Bus: Publishing {0} to {1} handlers.",
+			Logger.Info("Bus: Publishing {0} to {1} handlers.",
 				type.FullName,
 				handlers.Count);
 
@@ -33,6 +35,9 @@ namespace PluginCore.Bus
 		public void Subscribe<T>(Action<T> handler)
 		{
 			if (handler == null) throw new ArgumentNullException("handler");
+
+			Logger.Info("Bus: Subscribing to {0}.",
+				typeof(T).FullName);
 
 			Wire(typeof(T), new Handler(handler.GetHashCode(), message => handler.Invoke((T)message)));
 		}
