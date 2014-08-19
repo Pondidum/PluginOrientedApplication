@@ -23,11 +23,13 @@ namespace ApplicationContainer
 
 			var plugins = new PluginLoader(bus);
 			plugins.Add(@"plugins\DeveloperToolsPlugin.dll");
+			plugins.Add(@"plugins\BroadcastPlugin.dll");
+			plugins.Add(@"plugins\ReceiverPlugin.dll");
 
 			plugins.Load();
 
 			Console.WriteLine("Done.");
-			Console.ReadKey();
+			Application.Run(new Form());
 		}
 	}
 
