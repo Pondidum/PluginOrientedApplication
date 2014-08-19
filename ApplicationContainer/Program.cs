@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using PluginCore;
-using PluginCore.Internal.Bus;
+using PluginCore.Bus;
 using PluginCore.Messages;
 
 namespace ApplicationContainer
@@ -29,7 +29,7 @@ namespace ApplicationContainer
 			plugins.Load();
 
 			Console.WriteLine("Done.");
-			Application.Run(new Form());
+			Console.ReadKey();
 		}
 	}
 

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using PluginCore;
-using PluginCore.Bus;
+using PluginCore.Internal;
 
-namespace PluginCore.Internal.Bus
+namespace PluginCore.Bus
 {
 	public class InMemoryBus : IBus
 	{
