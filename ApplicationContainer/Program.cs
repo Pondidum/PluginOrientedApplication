@@ -28,7 +28,7 @@ namespace ApplicationContainer
 
 			LogManager.Configuration = config;
 
-			var bus = new InMemoryBus();
+			var bus = new MappingBus();
 			bus.Subscribe<PluginErrorMessage>(m => Console.WriteLine(m.Message));
 
 			var plugins = new PluginLoader(bus);
