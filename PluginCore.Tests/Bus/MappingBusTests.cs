@@ -1,4 +1,5 @@
 ﻿using PluginCore.Bus;
+using PluginCore.Tests.TestUtils;
 using Should;
 using Xunit;
 
@@ -11,6 +12,14 @@ namespace PluginCore.Tests.Bus
 		public MappingBusTests()
 		{
 			_bus = new MappingBus();
+		}
+
+		[Fact]
+		public void Publishing_a_message_with_no_subscribers_doesnt_error()
+		{
+			var ex = Catch.Exception(() => _bus.Publish(new Original.TestMessage { Message = "Incoming" }));
+
+			ex.ShouldBeNull();
 		}
 
 		[Fact]
