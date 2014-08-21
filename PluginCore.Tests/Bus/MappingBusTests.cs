@@ -30,6 +30,16 @@ namespace PluginCore.Tests.Bus
 
 			_bus.Publish(new Original.TestMessage { Message = "Incoming" });
 		}
+
+		[Fact]
+		public void A_message_is_only_mapped_to_a_different_type_if_needed()
+		{
+			var testMessage = new Original.TestMessage { Message = "Incoming" };
+
+			_bus.Subscribe<Original.TestMessage>(m => m.ShouldEqual(testMessage));
+
+			_bus.Publish(testMessage);
+		}
 	}
 
 

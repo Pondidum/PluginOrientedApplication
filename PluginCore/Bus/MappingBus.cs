@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using AutoMapper;
 using PluginCore.Internal;
 
@@ -44,7 +43,9 @@ namespace PluginCore.Bus
 
 			mappingSet.ForEach(mapping =>
 			{
-				var target = Mapper.DynamicMap(message, messageType, mapping.Type);
+				var target = messageType == mapping.Type 
+					? message
+					: Mapper.DynamicMap(message, messageType, mapping.Type);
 
 				mapping.Trigger(target);
 			});
