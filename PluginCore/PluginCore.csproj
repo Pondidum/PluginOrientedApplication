@@ -64,7 +64,7 @@
     <Compile Include="PluginDefinition.cs" />
     <Compile Include="PluginGraph.cs" />
     <Compile Include="PluginLoader.cs" />
-    <Compile Include="PluginPreLoader.cs" />
+    <Compile Include="AssemblyParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

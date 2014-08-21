@@ -31,7 +31,7 @@ namespace PluginCore
 
 		public void Load()
 		{
-			var definitions = new PluginPreLoader().BuildDefinitions(_pluginPaths);
+			var definitions = new AssemblyParser().BuildDefinitions(_pluginPaths);
 			var sorted = new PluginGraph(_bus).Build(definitions);
 			
 			sorted.ToList().ForEach(d =>

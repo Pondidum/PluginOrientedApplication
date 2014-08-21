@@ -5,13 +5,13 @@ using System.Reflection;
 
 namespace PluginCore
 {
-	internal class PluginPreLoader
+	internal class AssemblyParser
 	{
-		public IEnumerable<PluginDefinition> BuildDefinitions(IEnumerable<string> assemblies)
+		public IEnumerable<PluginDefinition> BuildDefinitions(IEnumerable<string> paths)
 		{
 			var definitionType = typeof (PluginDefinition);
 
-			return assemblies
+			return paths
 				.Select(path => Assembly.LoadFrom(path))
 				.SelectMany(assembly =>
 				{
