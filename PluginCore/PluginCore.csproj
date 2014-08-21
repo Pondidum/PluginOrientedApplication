@@ -53,7 +53,6 @@
   <ItemGroup>
     <Compile Include="Bus\Handler.cs" />
     <Compile Include="Bus\IBus.cs" />
-    <Compile Include="Bus\InMemoryBus.cs" />
     <Compile Include="Bus\MappingBus.cs" />
     <Compile Include="Internal\DependencyGraph.cs" />
     <Compile Include="Internal\DirectedGraph\Cycle.cs" />
