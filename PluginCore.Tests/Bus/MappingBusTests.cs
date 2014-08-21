@@ -1,26 +1,66 @@
-﻿using Xunit;
+﻿using PluginCore.Bus;
+using Should;
+using Xunit;
 
 namespace PluginCore.Tests.Bus
 {
 	public class MappingBusTests
 	{
-		[Fact]
-		public void A_message_is_mapped_to_all_messages_of_the_same_name()
+		private IBus _bus;
+
+		private string _firstMessage;
+		private string _secondMessage;
+
+		public MappingBusTests()
 		{
-			var bus = new mappingbus
+			_bus = new MappingBus();
+		}
+
+		[Fact]
+		public void A_message_is_published_to_all_handlers_with_matching_type_names()
+		{
+			_bus.Subscribe<Original.TestMessage>(m => _firstMessage = m.Message);
+			_bus.Subscribe<Matching.TestMessage>(m => _secondMessage = m.Message);
+
+			_bus.Publish(new Original.TestMessage { Message = "Incoming" });
+
+			_firstMessage.ShouldEqual("Incoming");
+			_secondMessage.ShouldEqual("Incoming");
+		}
+
+		[Fact]
+		public void A_message_is_publishe_to_all_partial_matching_handlers()
+		{
+			_bus.Subscribe<Original.TestMessage>(m => _firstMessage = m.Message);
+			_bus.Subscribe<Partial.TestMessage>(m => _secondMessage = m.Message);
+
+			_bus.Publish(new Original.TestMessage { Message = "Incoming" });
+
+			_firstMessage.ShouldEqual("Incoming");
+			_secondMessage.ShouldEqual("Incoming");
 		}
 	}
 
 
-	namespace First
+	namespace Original
 	{
 		public class TestMessage
 		{
+			public int Count { get; set; }
 			public string Message { get; set; }
 		}
 	}
 
-	namespace Second
+	namespace Matching
+	{
+		public class TestMessage
+		{
+			public int Count { get; set; }
+			public string Message { get; set; }
+		}
+	}
+
+	namespace Partial
 	{
 		public class TestMessage
 		{
