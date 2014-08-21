@@ -8,9 +8,6 @@ namespace PluginCore.Tests.Bus
 	{
 		private IBus _bus;
 
-		private string _firstMessage;
-		private string _secondMessage;
-
 		public MappingBusTests()
 		{
 			_bus = new MappingBus();
@@ -19,25 +16,19 @@ namespace PluginCore.Tests.Bus
 		[Fact]
 		public void A_message_is_published_to_all_handlers_with_matching_type_names()
 		{
-			_bus.Subscribe<Original.TestMessage>(m => _firstMessage = m.Message);
-			_bus.Subscribe<Matching.TestMessage>(m => _secondMessage = m.Message);
+			_bus.Subscribe<Original.TestMessage>(m => m.Message.ShouldEqual("Incoming"));
+			_bus.Subscribe<Matching.TestMessage>(m => m.Message.ShouldEqual("Incoming"));
 
 			_bus.Publish(new Original.TestMessage { Message = "Incoming" });
-
-			_firstMessage.ShouldEqual("Incoming");
-			_secondMessage.ShouldEqual("Incoming");
 		}
 
 		[Fact]
 		public void A_message_is_publishe_to_all_partial_matching_handlers()
 		{
-			_bus.Subscribe<Original.TestMessage>(m => _firstMessage = m.Message);
-			_bus.Subscribe<Partial.TestMessage>(m => _secondMessage = m.Message);
+			_bus.Subscribe<Original.TestMessage>(m => m.Message.ShouldEqual("Incoming"));
+			_bus.Subscribe<Partial.TestMessage>(m => m.Message.ShouldEqual("Incoming"));
 
 			_bus.Publish(new Original.TestMessage { Message = "Incoming" });
-
-			_firstMessage.ShouldEqual("Incoming");
-			_secondMessage.ShouldEqual("Incoming");
 		}
 	}
 
