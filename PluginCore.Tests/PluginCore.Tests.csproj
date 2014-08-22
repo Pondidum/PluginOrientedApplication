@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Bus\MappingBusTests.cs" />
     <Compile Include="PluginGraphTests.cs" />
+    <Compile Include="PluginTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestUtils\Catch.cs" />
     <Compile Include="TestUtils\LoggingBus.cs" />

@@ -52,7 +52,7 @@ namespace PluginCore
 
 			while (_waitingPublishes.Any())
 			{
-				_waitingSubscribes.Dequeue().Invoke();
+				_waitingPublishes.Dequeue().Invoke();
 			}
 		}
 	}
