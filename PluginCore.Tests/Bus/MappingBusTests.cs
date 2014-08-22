@@ -1,6 +1,6 @@
 ﻿using PluginCore.Bus;
 using PluginCore.Tests.TestUtils;
-using Should;
+using Shouldly;
 using Xunit;
 
 namespace PluginCore.Tests.Bus
@@ -19,14 +19,14 @@ namespace PluginCore.Tests.Bus
 		{
 			var ex = Catch.Exception(() => _bus.Publish(new Original.TestMessage { Message = "Incoming" }));
 
-			ex.ShouldBeNull();
+			ex.ShouldBe(null);
 		}
 
 		[Fact]
 		public void A_message_is_published_to_all_handlers_with_matching_type_names()
 		{
-			_bus.Subscribe<Original.TestMessage>(m => m.Message.ShouldEqual("Incoming"));
-			_bus.Subscribe<Matching.TestMessage>(m => m.Message.ShouldEqual("Incoming"));
+			_bus.Subscribe<Original.TestMessage>(m => m.Message.ShouldBe("Incoming"));
+			_bus.Subscribe<Matching.TestMessage>(m => m.Message.ShouldBe("Incoming"));
 
 			_bus.Publish(new Original.TestMessage { Message = "Incoming" });
 		}
@@ -34,8 +34,8 @@ namespace PluginCore.Tests.Bus
 		[Fact]
 		public void A_message_is_publishe_to_all_partial_matching_handlers()
 		{
-			_bus.Subscribe<Original.TestMessage>(m => m.Message.ShouldEqual("Incoming"));
-			_bus.Subscribe<Partial.TestMessage>(m => m.Message.ShouldEqual("Incoming"));
+			_bus.Subscribe<Original.TestMessage>(m => m.Message.ShouldBe("Incoming"));
+			_bus.Subscribe<Partial.TestMessage>(m => m.Message.ShouldBe("Incoming"));
 
 			_bus.Publish(new Original.TestMessage { Message = "Incoming" });
 		}
@@ -45,7 +45,7 @@ namespace PluginCore.Tests.Bus
 		{
 			var testMessage = new Original.TestMessage { Message = "Incoming" };
 
-			_bus.Subscribe<Original.TestMessage>(m => m.ShouldEqual(testMessage));
+			_bus.Subscribe<Original.TestMessage>(m => m.ShouldBe(testMessage));
 
 			_bus.Publish(testMessage);
 		}
