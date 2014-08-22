@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using PluginCore.Bus;
 using PluginCore.Internal;
@@ -21,7 +22,9 @@ namespace PluginCore
 		{
 			plugins.ToList().ForEach(plugin => _graph.RegisterItem(plugin));
 
-			if (_graph.HasMissingDependencies())
+			var missing = _graph.MissingDependencies().ToList();
+
+			if (missing.Any())
 			{
 				_bus.Publish(new PluginErrorMessage
 				{
@@ -30,7 +33,12 @@ namespace PluginCore
 				});
 			}
 
-			return _graph.Ordered();
+			Func<IEnumerable<string>, bool> noneMissing = requires => missing.All(m => requires.Contains(m) == false);
+
+			return _graph
+				.Ordered()
+				.Where(plugin => noneMissing(plugin.Requires))
+				.ToList();
 		}
 	}
 }
