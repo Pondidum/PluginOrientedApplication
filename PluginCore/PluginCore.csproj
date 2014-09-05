@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,6 +60,7 @@
     <Compile Include="Internal\DirectedGraph\Edge.cs" />
     <Compile Include="Internal\DirectedGraph\Node.cs" />
     <Compile Include="Internal\Extensions.cs" />
+    <Compile Include="Messages\DisplayDialogMessage.cs" />
     <Compile Include="Messages\PluginErrorMessage.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="PluginDefinition.cs" />

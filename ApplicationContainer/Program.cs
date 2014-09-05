@@ -30,11 +30,12 @@ namespace ApplicationContainer
 
 			var bus = new MappingBus();
 			bus.Subscribe<PluginErrorMessage>(m => Console.WriteLine(m.Message));
+			bus.Subscribe<DisplayDialogMessage>(m => m.Display());
 
 			var plugins = new PluginLoader(bus);
 			plugins.Add(@"plugins\DeveloperToolsPlugin.dll");
-			plugins.Add(@"plugins\BroadcastPlugin.dll");
-			plugins.Add(@"plugins\ReceiverPlugin.dll");
+			//plugins.Add(@"plugins\BroadcastPlugin.dll");
+			//plugins.Add(@"plugins\ReceiverPlugin.dll");
 
 			plugins.Load();
 
