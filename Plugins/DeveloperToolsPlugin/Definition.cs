@@ -1,4 +1,5 @@
-﻿using PluginCore;
+﻿using System.Linq;
+using PluginCore;
 
 namespace DeveloperToolsPlugin
 {
@@ -9,8 +10,8 @@ namespace DeveloperToolsPlugin
 			Name = "Developer Tools";
 			Description = "Developer utilities to inspect the running application";
 
-			Requires = new[] { "MenuBuilder", "PermissionAuthority" };
-			Run = () => new Plugin();
+			Requires = Enumerable.Empty<string>(); //new[] { "MenuBuilder", "PermissionAuthority" };
+			Run = () => new DeveloperPlugin();
 		}
 	}
 }
