@@ -7,7 +7,7 @@ using PluginCore;
 using PluginCore.Bus;
 using PluginCore.Messages;
 
-namespace ApplicationContainer
+namespace ConsoleApplicationContainer
 {
 	static class Program
 	{
